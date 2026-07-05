@@ -27,7 +27,7 @@ jobs:
       run: |
         # Grab latest SeaBIOS release from official repostiory and latest compiled release version from this repostiory
         SEABIOS_V=$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} https://api.github.com/repos/coreboot/seabios/tags | jq -r '.[0].name')
-        AVAIL_SEABIOS_V="$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} -s https://api.github.com/repos/ich777/mos-seabios-firmware/releases/latest | jq -r '.tag_name')"
+        AVAIL_SEABIOS_V="$(curl -u ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} -s https://api.github.com/repos/${{ github.repository }}/mos-seabios-firmware/releases/latest | jq -r '.tag_name')"
 
         # Check if one of the versions is empty
         if [[ -z "${SEABIOS_V}" || -z "${AVAIL_SEABIOS_V}" ]]; then
